@@ -1,0 +1,668 @@
+/* Dashboard specific styles */
+.welcome-section {
+  margin-bottom: 2rem;
+}
+
+.welcome-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.welcome-description {
+  font-size: 1rem;
+  color: #64748b;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-card {
+  height: 190px;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.025em;
+}
+
+.dashboard-card-description {
+  font-size: 1rem;
+  color: #64748b;
+  margin-bottom: 1.25rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+.dashboard-card-action {
+  margin-top: 1rem;
+}
+
+.stats-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.stats-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.875rem;
+  color: #0f172a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.stats-item:last-child {
+  border-bottom: none;
+}
+
+.table-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.table-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.table-header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.table-title {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.025em;
+}
+
+.table-description {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  background-color: #f8fafc;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #374151;
+  border-bottom: 1px solid #e2e8f0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.875rem;
+  color: #0f172a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.activity-type {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.activity-type.upload {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.activity-type.analysis {
+  background-color: #f3e8ff;
+  color: #7c3aed;
+}
+
+.activity-type.login {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.activity-type.update {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.activity-type.export {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.activity-type.delete {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.badge-primary {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.badge-success {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.badge-warning {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.025em;
+}
+
+.button-primary {
+  background-color: #0f172a;
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: #1e293b;
+}
+
+.button-outline {
+  background-color: transparent;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+}
+
+.button-outline:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.button-icon {
+  margin-right: 0.75rem;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 1.25rem;
+  color: #64748b;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 1.25rem;
+  color: #dc2626;
+  padding: 1rem;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Pagination controls */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+}
+
+.pagination-info {
+  font-size: 0.9rem;
+  color: #555;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Delete button styles */
+.button-danger {
+  background-color: #f44336;
+  color: white;
+  border: none;
+}
+
+.button-danger:hover {
+  background-color: #d32f2f;
+}
+
+.button-small {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* KPI SECTION - Two separate divs */
+.kpi-section {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* First div: Main KPI Cards (Reports & Files) - Same line */
+.main-kpi-cards {
+  display: flex;
+  gap: 1.5rem;
+  flex: 1;
+  min-width: 0; /* Allow shrinking */
+}
+
+/* Second div: Daily Usage Cards */
+.daily-usage-cards {
+  display: flex;
+  flex: 0 0 auto; /* Don't grow, don't shrink, auto width */
+}
+
+/* Shared KPI Card Styles */
+.kpi-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Main KPI Cards (Reports & Files) - Equal width */
+.main-kpi-cards .kpi-card {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Daily Usage Card - Fixed width */
+.daily-usage-cards .kpi-card {
+  min-width: 350px;
+  max-width: 400px;
+}
+
+.kpi-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kpi-card.reports .kpi-icon {
+  background: rgba(43, 124, 255, 0.1);
+  color: #2b7cff;
+}
+
+.kpi-card.uploads .kpi-icon {
+  background: rgba(0, 184, 148, 0.1);
+  color: #00b894;
+}
+
+.kpi-card.daily-usage .kpi-icon {
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
+.kpi-content {
+  flex: 1;
+}
+
+.kpi-label {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.025em;
+}
+
+.kpi-value {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.kpi-card.reports .kpi-value {
+  color: #2b7cff;
+}
+
+.kpi-card.uploads .kpi-value {
+  color: #00b894;
+}
+
+.kpi-card.daily-usage .kpi-value {
+  color: #e74c3c;
+}
+
+/* Week Navigation Styles */
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.week-navigation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.week-nav-btn {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+  transition: all 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 600;
+}
+
+.week-nav-btn:hover:not(:disabled) {
+  background: #e9ecef;
+  color: #333;
+}
+
+.week-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.week-range {
+  font-size: 0.9375rem;
+  color: #666;
+  font-weight: 600;
+  min-width: 100px;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.025em;
+}
+
+.week-summary {
+  font-size: 0.9375rem;
+  color: #e74c3c;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Daily login chart container */
+.daily-login-chart {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.login-dots {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.login-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.login-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.login-dot.entered {
+  background-color: #00b894;
+  box-shadow: 0 0 0 2px rgba(0, 184, 148, 0.2);
+}
+
+.login-dot.not-entered {
+  background-color: #e74c3c;
+  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+}
+
+.login-dot:hover {
+  transform: scale(1.2);
+}
+
+.day-label {
+  font-size: 0.8125rem;
+  color: #666;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.025em;
+}
+
+/* Responsive dashboard */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .data-table {
+    font-size: 0.8rem;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 0.5rem;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    min-width: 800px;
+  }
+
+  .table-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .table-header-actions {
+    align-items: flex-start;
+  }
+
+  /* KPI Section - Stack vertically on mobile */
+  .kpi-section {
+    flex-direction: column;
+  }
+
+  /* Main KPI Cards - Stack on mobile */
+  .main-kpi-cards {
+    flex-direction: column;
+  }
+
+  .main-kpi-cards .kpi-card {
+    min-width: unset;
+  }
+
+  /* Daily Usage Card - Full width on mobile */
+  .daily-usage-cards .kpi-card {
+    min-width: unset;
+    max-width: unset;
+  }
+
+  .kpi-card {
+    padding: 1.5rem;
+  }
+
+  .kpi-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .kpi-value {
+    font-size: 2rem;
+  }
+
+  .kpi-label {
+    font-size: 0.9375rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-card {
+    padding: 1rem;
+  }
+
+  .table-header {
+    padding: 1rem;
+  }
+
+  .kpi-card {
+    padding: 1.25rem;
+  }
+
+  .kpi-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .kpi-value {
+    font-size: 1.75rem;
+  }
+
+  .kpi-label {
+    font-size: 0.875rem;
+  }
+
+  .chart-header {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .week-navigation {
+    gap: 8px;
+  }
+
+  .week-nav-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .week-range {
+    font-size: 0.8125rem;
+    min-width: 85px;
+  }
+
+  .week-summary {
+    font-size: 0.8125rem;
+  }
+
+  .login-dots {
+    gap: 8px;
+  }
+
+  .login-dot {
+    width: 14px;
+    height: 14px;
+  }
+
+  .day-label {
+    font-size: 0.75rem;
+  }
+
+  .button {
+    padding: 0.625rem 1rem;
+    font-size: 0.9375rem;
+  }
+}

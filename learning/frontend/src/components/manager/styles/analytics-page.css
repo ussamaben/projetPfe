@@ -1,0 +1,582 @@
+/* Analysis Page Specific Styles */
+.analysis-controls {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  gap: var(--space-4); /* ADJUSTED */
+  margin-bottom: var(--space-6); /* ADJUSTED */
+  align-items: flex-end;
+  background: white;
+  padding: var(--space-4) var(--space-5); /* ADJUSTED */
+  border-radius: var(--radius-lg); /* ADJUSTED */
+  box-shadow: var(--shadow-sm); /* ADJUSTED for subtlety */
+  border: 1px solid var(--gray-200);
+  position: relative;
+  overflow: hidden;
+}
+
+.analysis-controls::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 3px; /* ADJUSTED */
+  background: linear-gradient(90deg, var(--primary-500), var(--warning-500), var(--success-500));
+}
+
+.file-selector {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 250px; /* Ensure it doesn't get too squished */
+}
+
+.file-selector select {
+  width: 100%;
+  padding: var(--space-2) var(--space-3); /* ADJUSTED */
+  border: 1px solid var(--gray-300); /* ADJUSTED */
+  border-radius: var(--radius-md); /* ADJUSTED */
+  font-size: 0.875rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: white;
+  font-family: var(--font-sans);
+}
+
+.file-selector select:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); /* ADJUSTED */
+}
+
+.loading-files {
+  padding: var(--space-2) 0; /* ADJUSTED */
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.analysis-buttons {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.analyze-button {
+  padding: var(--space-2) var(--space-4); /* ADJUSTED */
+  background: var(--primary-600);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md); /* ADJUSTED */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: fit-content;
+  font-weight: 500; /* ADJUSTED */
+  font-size: 0.875rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm); /* ADJUSTED */
+}
+
+.analyze-button:hover {
+  background: var(--primary-700);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.analyze-button:disabled {
+  background: var(--gray-300); /* ADJUSTED */
+  color: var(--gray-500);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.error-message, .success-message {
+  padding: var(--space-3) var(--space-4); /* ADJUSTED */
+  border-radius: var(--radius-md); /* ADJUSTED */
+  margin-bottom: var(--space-4); /* ADJUSTED */
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.error-message {
+  color: var(--error-600);
+  background: var(--error-50);
+  border: 1px solid var(--error-200);
+}
+
+.success-message {
+  color: var(--success-700);
+  background: var(--success-50);
+  border: 1px solid var(--success-200);
+}
+
+.loading-analysis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8); /* ADJUSTED */
+  color: var(--gray-600);
+  gap: var(--space-3); /* ADJUSTED */
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+}
+
+.analysis-results {
+  margin-top: var(--space-6); /* ADJUSTED */
+}
+/* Dashboard Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem 0;
+}
+
+.header-content h1.dashboard-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+}
+
+.dashboard-subtitle {
+  color: #64748b;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.header-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.badge-icon {
+  width: 2rem;
+  height: 2rem;
+  color: #2563eb;
+}
+
+.badge-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Enhanced Analysis Controls */
+.analysis-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: flex-end;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.analysis-controls::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #f59e0b, #10b981);
+}
+
+/* Enhanced Buttons */
+.analyze-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: fit-content;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.analyze-button.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.analyze-button.primary:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  transform: translateY(-1px);
+}
+
+.analyze-button.secondary {
+  background: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.analyze-button.secondary:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.analyze-button:disabled {
+  background: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Summary Stats */
+.summary-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: none;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card.critical {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.stat-card.warning {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+.stat-card.info {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.stat-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0 0 0.25rem 0;
+  opacity: 0.9;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+}
+
+.stat-filename {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  line-height: 1.2;
+}
+
+.stat-icon {
+  width: 2rem;
+  height: 2rem;
+  opacity: 0.8;
+}
+
+/* Enhanced Charts Container */
+.charts-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  padding: 0;
+}
+
+.chart-wrapper {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+
+.chart-wrapper:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.chart-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #2563eb;
+}
+
+.chart-icon.vulnerability {
+  color: #9333ea;
+}
+
+.chart-icon.geo {
+  color: #059669;
+}
+
+.chart-header h3 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.chart-container {
+  position: relative;
+  height: 320px;
+  width: 100%;
+}
+
+.chart-container.compact {
+  height: 260px;
+}
+
+/* Vulnerability Chart Specific */
+.vulnerability-chart {
+  grid-column: span 1;
+}
+
+.vulnerability-selector {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  background: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+/* Geographic Chart Layout */
+.geo-chart-wrapper {
+  grid-column: span 2;
+}
+
+.geo-layout-container {
+  display: flex;
+  gap: 1.5rem;
+  flex-grow: 1;
+}
+
+.geo-chart-container {
+  flex: 1;
+  min-width: 0;
+  height: 260px;
+}
+
+.geo-table {
+  flex: 0 0 280px;
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  background: #f8fafc;
+}
+
+.geo-table h4 {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #1e293b;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  background: #e2e8f0;
+  border-bottom: 1px solid #cbd5e1;
+  position: sticky;
+  top: 0;
+}
+
+.geo-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.geo-table th,
+.geo-table td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.8rem;
+}
+
+.geo-table th {
+  background-color: #f1f5f9;
+  position: sticky;
+  top: 0;
+  font-weight: 600;
+  color: #374151;
+}
+
+.geo-table td:nth-child(2),
+.geo-table td:nth-child(3) {
+  text-align: right;
+  font-weight: 600;
+}
+
+.geo-table tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Enhanced Messages */
+.error-message,
+.success-message {
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+  color: #dc2626;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.success-message {
+  color: #059669;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.loading-analysis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: #64748b;
+  gap: 1rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.loading-analysis p {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.loading-analysis span {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .charts-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .geo-chart-wrapper {
+    grid-column: span 2;
+  }
+
+  .vulnerability-chart {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .geo-layout-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .geo-table {
+    flex-basis: auto;
+    max-height: 250px;
+  }
+
+  .geo-chart-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .analysis-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .analysis-buttons {
+    justify-content: flex-start;
+  }
+
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+
+  .geo-chart-wrapper,
+  .vulnerability-chart {
+    grid-column: span 1;
+  }
+
+  .summary-stats {
+    grid-template-columns: 1fr;
+  }
+}

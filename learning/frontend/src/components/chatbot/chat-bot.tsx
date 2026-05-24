@@ -1,0 +1,280 @@
+// ChatBot.tsx
+
+"use client"
+
+import type React from "react"
+import { useState, useRef, useEffect } from "react"
+import axios from "axios" // NOUVEAU: Importer axios
+import { MessageSquare, Send, X, Minimize2, Maximize2, LoaderCircle } from "lucide-react"
+import "./chat-bot.css"
+
+// NOUVEAU: Définir l'URL de base de votre API backend
+const API_BASE_URL = "http://localhost:5001"
+
+// MODIFIÉ: Interface Message pour inclure les sources optionnelles
+interface Source {
+  source_file: string
+  score?: number
+  location_type: string
+  location: string
+}
+
+interface Message {
+  id: string
+  content: string
+  sender: "user" | "bot"
+  timestamp: Date
+  sources?: Source[] // NOUVEAU: Champ optionnel pour les sources
+}
+
+export const ChatBot = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isDragging, setIsDragging] = useState(false)
+  const [wasDragged, setWasDragged] = useState(false)
+  const [position, setPosition] = useState({ x: 20, y: window.innerHeight - 100 })
+  const [messages, setMessages] = useState<Message[]>([]) // MODIFIÉ: Initialement vide
+  const [inputValue, setInputValue] = useState("")
+  const [isMinimized, setIsMinimized] = useState(false)
+  const [isLoading, setIsLoading] = useState(true) // NOUVEAU: État pour le chargement de la réponse
+
+  const chatbotRef = useRef<HTMLDivElement>(null)
+  const dragStartRef = useRef<{ x: number; y: number } | null>(null)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  // NOUVEAU: Hook pour vérifier le statut du backend au chargement du composant
+  useEffect(() => {
+    const checkBackendStatus = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/api/status`)
+        if (response.data.status === "ready") {
+          setMessages([
+            {
+              id: "init-1",
+              content: "Bonjour ! Je suis prêt à répondre à vos questions sur le document SOC Report.",
+              sender: "bot",
+              timestamp: new Date(),
+            },
+          ])
+        } else {
+          setMessages([
+            {
+              id: "init-error",
+              content: `Le backend est en cours d'initialisation ou a rencontré une erreur : ${response.data.message}`,
+              sender: "bot",
+              timestamp: new Date(),
+            },
+          ])
+        }
+      } catch (error) {
+        console.error("Erreur de connexion au backend:", error)
+        setMessages([
+          {
+            id: "conn-error",
+            content: "Erreur de connexion au serveur backend. Veuillez vérifier qu'il est bien lancé sur le port 5001.",
+            sender: "bot",
+            timestamp: new Date(),
+          },
+        ])
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    checkBackendStatus()
+  }, []) // Le tableau vide signifie que cet effet ne s'exécute qu'une seule fois
+
+  useEffect(() => {
+    if (isOpen) {
+      scrollToBottom()
+    }
+  }, [messages, isOpen, isLoading]) // Se déclenche aussi quand isLoading change
+
+  // ... (le code pour le glisser-déposer reste le même)
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDragging && dragStartRef.current) {
+        setWasDragged(true);
+        const dx = e.clientX - dragStartRef.current.x;
+        const dy = e.clientY - dragStartRef.current.y;
+        setPosition((prev) => ({
+          x: Math.max(0, Math.min(window.innerWidth - 70, prev.x - dx)),
+          y: Math.max(0, Math.min(window.innerHeight - 70, prev.y - dy)),
+        }));
+        dragStartRef.current = { x: e.clientX, y: e.clientY };
+      }
+    };
+    const handleMouseUp = () => {
+      setIsDragging(false);
+      dragStartRef.current = null;
+      setTimeout(() => { setWasDragged(false); }, 100);
+    };
+    if (isDragging) {
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+    }
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDragging]);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault()
+    setIsDragging(true)
+    dragStartRef.current = { x: e.clientX, y: e.clientY }
+  }
+
+  const toggleChat = () => {
+    if (!wasDragged) {
+      setIsOpen(!isOpen)
+      if (!isOpen) { setIsMinimized(false) }
+    }
+  }
+
+  const toggleMinimize = () => setIsMinimized(!isMinimized)
+
+  // MODIFIÉ: Logique d'envoi de message pour appeler le backend
+  const handleSendMessage = async () => {
+    if (inputValue.trim() === "" || isLoading) return
+
+    const userQuestion = inputValue
+    const newUserMessage: Message = {
+      id: Date.now().toString(),
+      content: userQuestion,
+      sender: "user",
+      timestamp: new Date(),
+    }
+
+    setMessages((prev) => [...prev, newUserMessage])
+    setInputValue("")
+    setIsLoading(true)
+
+    try {
+      // Appel à l'API backend
+      const response = await axios.post(`${API_BASE_URL}/api/chat`, {
+        question: userQuestion,
+      })
+      
+      const botResponse: Message = {
+        id: (Date.now() + 1).toString(),
+        content: response.data.answer,
+        sender: "bot",
+        timestamp: new Date(),
+        sources: response.data.sources, // Ajouter les sources à la réponse
+      }
+      setMessages((prev) => [...prev, botResponse])
+
+    } catch (error) {
+      console.error("Erreur lors de l'appel à l'API de chat:", error)
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        content: "Désolé, une erreur est survenue. Je n'ai pas pu traiter votre demande.",
+        sender: "bot",
+        timestamp: new Date(),
+      }
+      setMessages((prev) => [...prev, errorMessage])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleSendMessage()
+    }
+  }
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  return (
+    <div
+      className="chatbot-container"
+      style={{ bottom: `${position.y}px`, right: `${position.x}px` }}
+      ref={chatbotRef}
+    >
+      {isOpen ? (
+        <div className={`chatbot-window ${isMinimized ? "minimized" : ""}`}>
+          <div className="chatbot-header" onMouseDown={handleMouseDown}>
+            <div className="chatbot-title">
+              <MessageSquare size={18} />
+              <span>AI Assistant</span>
+            </div>
+            <div className="chatbot-actions">
+              <button onClick={toggleMinimize} className="action-button">
+                {isMinimized ? <Maximize2 size={16} /> : <Minimize2 size={16} />}
+              </button>
+              <button onClick={toggleChat} className="action-button">
+                <X size={16} />
+              </button>
+            </div>
+          </div>
+        
+          {!isMinimized && (
+            <>
+              <div className="chatbot-messages">
+                {messages.map((message) => (
+                  <div
+                    key={message.id}
+                    className={`message ${message.sender === "user" ? "user-message" : "bot-message"}`}
+                  >
+                    {/* MODIFIÉ: Utiliser dangerouslySetInnerHTML pour interpréter le Markdown (comme les **) */}
+                    <div className="message-content" dangerouslySetInnerHTML={{ __html: message.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}></div>
+                    <div className="message-timestamp">
+                      {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                    </div>
+                    {/* NOUVEAU: Affichage des sources si elles existent */}
+                    {message.sources && message.sources.length > 0 && (
+                      <div className="message-sources">
+                        <strong>Sources:</strong>
+                        {message.sources.map((source, index) => (
+                          <div key={index} className="source-item">
+                            - Fichier: {source.source_file}, Ligne: {source.location}
+                            {source.score && ` (Score: ${source.score})`}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {/* NOUVEAU: Indicateur de chargement */}
+                {isLoading && (
+                  <div className="message bot-message">
+                    <div className="message-content typing-indicator">
+                      <LoaderCircle className="spin-icon" size={18}/>
+                      <span>Taper...</span>
+                    </div>
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
+              </div>
+
+              <div className="chatbot-input">
+                <input
+                  type="text"
+                  placeholder="Posez votre question..."
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  disabled={isLoading} // Désactiver l'input pendant le chargement
+                />
+                <button onClick={handleSendMessage} disabled={inputValue.trim() === "" || isLoading} className="send-button">
+                  <Send size={18} />
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      ) : (
+        <button
+          className="chatbot-button"
+          onClick={toggleChat}
+          onDoubleClick={toggleChat}
+          onMouseDown={handleMouseDown}
+        >
+          <MessageSquare size={24} />
+        </button>
+      )}
+    </div>
+  )
+}

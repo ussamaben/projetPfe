@@ -1,0 +1,141 @@
+/* Upload Page Specific Styles */
+.upload-form {
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-8);
+  margin-bottom: var(--space-8);
+  border: 1px solid var(--gray-200);
+  position: relative;
+  overflow: hidden; /* This ensures the ::before element stays within bounds */
+}
+
+.upload-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%; /* Explicitly set width */
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-500), var(--success-500));
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  z-index: 1; /* Ensure it appears above the background */
+}
+
+.file-info {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  border: 1px solid var(--gray-200);
+}
+
+.upload-progress {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  background: var(--primary-50);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--primary-200);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--gray-200);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-top: var(--space-2);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-500), var(--primary-600));
+  transition: width 0.3s ease;
+}
+
+.upload-success {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  background: var(--success-50);
+  border-radius: var(--radius-md);
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+  font-weight: 500;
+}
+
+.upload-error {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  background: var(--error-50);
+  border-radius: var(--radius-md);
+  border: 1px solid #fecaca;
+  color: var(--error-500);
+  font-weight: 500;
+}
+
+/* File list specific styles */
+.file-actions {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.file-actions .button {
+  padding: var(--space-2) var(--space-3);
+  font-size: 0.75rem;
+}
+
+.file-type-badge {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.file-size {
+  color: var(--gray-500);
+  font-size: 0.875rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-12);
+  color: var(--gray-500);
+}
+
+.empty-state-icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto var(--space-4);
+  color: var(--gray-300);
+}
+
+/* Upload Page Responsive */
+@media (max-width: 768px) {
+  .upload-form {
+    padding: var(--space-6);
+  }
+
+  .file-actions {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .file-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .upload-form {
+    padding: var(--space-4);
+  }
+}
